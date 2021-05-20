@@ -3,17 +3,48 @@
 version: 2.1
 
 orbs:
-  node: circleci/node@4.1
   heroku: circleci/heroku@1.2
 
+jobs:
+  build:
+    docker:
+      - image: node:16
+    steps:
+      - checkout
+      - run: yarn && yarn build
+      - save_cache:
+          key: v1-yarn-deps
+          paths:
+            - node_modules
+  tests:
+    docker:
+      - image: node:16
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-yarn-deps
+      - run: yarn test
+
+  coverage:
+    docker:
+      - image: node:16
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-yarn-deps
+      - run: yarn test:coverage
+      - store_test_results:
+          path: coverage
+
 workflows:
-  sample:
+  bibo-spa:
     jobs:
-      - node/test
-      - heroku/deploy-via-git:
-          force: true
+      - build
+      - tests:
           requires:
-            - node/test
-          filters:
-            branches:
-              only: master
+            - build
+      - coverage:
+          requires:
+            - build
