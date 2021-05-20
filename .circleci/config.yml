@@ -13,7 +13,7 @@ jobs:
       - checkout
       - run: yarn && yarn build
       - save_cache:
-          key: source-v1
+          key: v1-yarn-deps
           paths:
             - node_modules
   tests:
@@ -22,7 +22,8 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          - key: source-v1
+          keys:
+            - v1-yarn-deps
       - run: yarn test
 
   coverage:
