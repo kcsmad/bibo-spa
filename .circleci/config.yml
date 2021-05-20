@@ -2,6 +2,9 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+orbs:
+  heroku: circleci/heroku@1.2
+
 jobs:
   build:
     docker:
@@ -27,8 +30,11 @@ jobs:
     steps:
       - heroku/deploy-via-git:
           force: true
+          type: approval
           requires:
-            - node/test
+            - build
+            - test
+            - coverage
           filters:
             branches:
               only: master
