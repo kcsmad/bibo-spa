@@ -24,21 +24,6 @@ jobs:
     steps:
       - run: yarn coverage
 
-  deploy:
-    docker:
-      - image: node:16
-    steps:
-      - heroku/deploy-via-git:
-          force: true
-          type: approval
-          requires:
-            - build
-            - test
-            - coverage
-          filters:
-            branches:
-              only: master
-
 workflows:
   bibo-spa:
     jobs:
@@ -49,8 +34,3 @@ workflows:
       - coverage:
           requires:
             - build
-      - deploy:
-          requires:
-            - build
-            - test
-            - coverage
