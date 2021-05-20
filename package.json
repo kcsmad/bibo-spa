@@ -54,7 +54,7 @@
       "<rootDir>/src/**/*.tsx",
       "!<rootDir>/src/**/index.ts",
       "!<rootDir>/src/reportWebVitals.ts",
-      "!<rootDir>/src/index.js",
+      "!<rootDir>/src/index.tsx",
       "!<rootDir>/src/**/**.d.ts",
       "!<rootDir>/src/setupTests.ts",
       "!<rootDir>/src/**/*.stories.js",
