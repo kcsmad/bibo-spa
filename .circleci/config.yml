@@ -31,7 +31,12 @@ jobs:
       - image: node:16
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - v1-yarn-deps
       - run: yarn test:coverage
+      - store_test_results:
+          path: /coverage/
 
 workflows:
   bibo-spa:

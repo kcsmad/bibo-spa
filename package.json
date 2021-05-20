@@ -2,6 +2,7 @@
   "name": "bibo-spa",
   "description": "BiBO (Biblioteca Brasileira Online) é um app para quem deseja obter informação sobre livros publicados no Brasi. Este projeto é um SPA utilizado para dar visibilidade aos usuários da API",
   "author": "Kevin Maduro",
+  "license": "MIT",
   "version": "0.1.0",
   "scripts": {
     "start": "react-scripts start",
