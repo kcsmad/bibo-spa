@@ -36,7 +36,7 @@ jobs:
             - v1-yarn-deps
       - run: yarn test:coverage
       - store_test_results:
-          path: /coverage/
+          path: coverage
 
 workflows:
   bibo-spa:
