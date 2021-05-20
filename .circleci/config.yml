@@ -37,7 +37,7 @@ workflows:
   bibo-spa:
     jobs:
       - build
-      - test:
+      - tests:
           requires:
             - build
       - coverage:
