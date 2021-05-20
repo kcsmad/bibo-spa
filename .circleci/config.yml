@@ -2,14 +2,29 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
-orbs:
-  node: circleci/node@4.1
-  heroku: circleci/heroku@1.2
+jobs:
+  build:
+    docker:
+      - image: node:16
+    steps:
+      - checkout
+      - run: yarn && yarn build
+  tests:
+    docker:
+      - image: node:16
+    steps:
+      - run: yarn test
 
-workflows:
-  sample:
-    jobs:
-      - node/test
+  coverage:
+    docker:
+      - image: node:16
+    steps:
+      - run: yarn coverage
+
+  deploy:
+    docker:
+      - image: node:16
+    steps:
       - heroku/deploy-via-git:
           force: true
           requires:
@@ -17,3 +32,19 @@ workflows:
           filters:
             branches:
               only: master
+
+workflows:
+  bibo-spa:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+      - coverage:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - build
+            - test
+            - coverage

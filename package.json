@@ -7,7 +7,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:watch": "react-scripts test --env=jsdom --verbose",
+    "test:coverage": "react-scripts test --env=jsdom --coverage"
   },
   "dependencies": {
     "react": "^17.0.2",
@@ -23,6 +24,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "ts-jest": "^26.5.6",
     "typescript": "^4.1.2"
   },
   "eslintConfig": {
@@ -42,5 +44,35 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.js",
+      "<rootDir>/src/**/*.jsx",
+      "<rootDir>/src/**/*.ts",
+      "<rootDir>/src/**/*.tsx",
+      "!<rootDir>/src/**/index.ts",
+      "!<rootDir>/src/index.js",
+      "!<rootDir>/src/**/**.d.ts",
+      "!<rootDir>/src/setupTests.ts",
+      "!<rootDir>/src/**/*.stories.js",
+      "!<rootDir>/src/**/*.stories.jsx",
+      "!<rootDir>/src/**/*.stories.ts",
+      "!<rootDir>/src/**/*.stories.tsx"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    },
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss)$": "<rootDir>/.test/css-stub.js"
+    },
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "ts-jest"
+    }
   }
 }
