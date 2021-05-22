@@ -1,0 +1,32 @@
+@import '../../assets/variables';
+
+.bibo-spotlight {
+  margin: 0;
+  padding: 4rem 10rem;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-shadow: $black-color 1px 1px;
+
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    max-width: 50%;
+    margin: 1rem auto;
+    font-size: 64px;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+  }
+
+  &__description {
+    display: flex;
+    margin: 0 auto;
+    text-align: center;
+    font-family: 'Heebo', sans-serif;
+    font-size: 25px;
+    max-width: 80%;
+  }
+}
